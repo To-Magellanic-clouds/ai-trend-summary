@@ -6,13 +6,15 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+
+from configReader import ConfigReader
 from utils import init_driver
 import time
 import pickle  # 用于保存和加载 cookies
-import os
 
-USERNAME = ""
-PASSWORD = ""
+config = ConfigReader('config.ini')
+USERNAME = config.get('huggingface','username')
+PASSWORD = config.get('huggingface','password')
 
 driver = init_driver(headless=True,chrome_exe_path=r"C:\software\chromex64\chrome.exe")
 driver.get("https://huggingface.co/login")
