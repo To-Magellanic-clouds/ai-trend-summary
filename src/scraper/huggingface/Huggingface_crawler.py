@@ -18,14 +18,14 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException, WebDriverException
 
-import spider
-from configReader import ConfigReader
+from infrastructure.utils import ScraperUtil
+from src.config.configReader import ConfigReader
 
-from utils import init_driver, clean_text
+from infrastructure.utils.SeleniumUtils import init_driver, clean_text
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 
-from xpaths import XPaths
+from src.scraper.xpaths import XPaths
 
 
 class HuggingfaceCrawler:
@@ -251,7 +251,7 @@ class HuggingfaceCrawler:
         return self.perform_login(username=USERNAME, password=PASSWORD)
     def get_markdown_from_url(url: str, content_selector: str) -> str:
         content_selector = ".blog-content"
-        spider.get_markdown_from_url(url, content_selector)
+        ScraperUtil.get_markdown_from_url(url, content_selector)
 
 
     def get_top_blog_list(self) -> dict:

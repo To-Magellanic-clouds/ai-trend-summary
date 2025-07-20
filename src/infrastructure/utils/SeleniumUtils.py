@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time       : 2024/11/7 10:15
 # @Author     : Marverlises
-# @File       : utils.py
+# @File       : SeleniumUtils.py
 # @Description: PyCharm
 import re
 import json
