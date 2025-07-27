@@ -8,8 +8,7 @@ from typing import List, Dict, Union
 import json
 import os
 from pathlib import Path
-
-from infrastructure.utils import PathUtil
+from src.infrastructure.utils import PathUtil
 
 
 class HuggingFaceBlogScraper:
