@@ -194,11 +194,11 @@ if __name__ == '__main__':
     def progress_callback(idx: int, title: str):
         print(f"正在处理第 {idx + 1} 个文件: {title}")
     
-    # provider = LLMUtil.CompatibleOpenAIProvider(os.getenv("ALIYUN_URL"),"ALIYUN_API_KEY")
-    # llm = provider.get_llm(model_name="qwen-turbo-latest")
+    provider = LLMUtil.CompatibleOpenAIProvider(os.getenv("ALIYUN_URL"),"ALIYUN_API_KEY")
+    llm = provider.get_llm(model_name="qwen-turbo-latest")
 
-    provider = LLMUtil.OllamaProvider(model_name="zephyr")
-    llm = provider.get_llm(model_name="zephyr")
+    # provider = LLMUtil.OllamaProvider(model_name="zephyr")
+    # llm = provider.get_llm(model_name="zephyr")
     # 处理文件流
     results = process_files_with_stream(
         file_stream=file_stream,

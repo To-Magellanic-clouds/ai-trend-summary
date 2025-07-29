@@ -6,10 +6,10 @@ from langchain_openai import ChatOpenAI  # 更新导入
 from langchain_community.llms import HuggingFaceHub
 from langchain_community.llms import Anthropic
 import os
-from dotenv import load_dotenv
 import requests
 import json
 
+from dotenv import load_dotenv
 load_dotenv()
 
 
@@ -67,20 +67,42 @@ class CompatibleOpenAIProvider(LLMProvider):
         self.api_key_env_var = api_key_env_var
 
     def get_llm(self, model_name=None, temperature=0.0, **kwargs):
+        # 移除可能冲突的 model 参数
+        kwargs.pop('model', None)
+        # 移除特殊参数，避免传递给ChatOpenAI构造函数
+        kwargs.pop('enable_thinking', None)
+        
+        # 为阿里云等API设置特殊参数
+        extra_body = {}
+        if 'dashscope.aliyuncs.com' in self.api_base:
+            extra_body['enable_thinking'] = False
+        
         return ChatOpenAI(
-            model=model_name or kwargs.get("model", "gpt-3.5-turbo"),
+            model=model_name or "gpt-3.5-turbo",
             temperature=temperature,
             base_url=self.api_base,
             api_key=os.getenv(self.api_key_env_var),
+            extra_body=extra_body,
             **kwargs
         )
 
     def get_chat_model(self, model_name=None, temperature=0.0, **kwargs):
+        # 移除可能冲突的 model 参数
+        kwargs.pop('model', None)
+        # 移除特殊参数，避免传递给ChatOpenAI构造函数
+        kwargs.pop('enable_thinking', None)
+        
+        # 为阿里云等API设置特殊参数
+        extra_body = {}
+        if 'dashscope.aliyuncs.com' in self.api_base:
+            extra_body['enable_thinking'] = False
+        
         return ChatOpenAI(
-            model=model_name or kwargs.get("model", "gpt-3.5-turbo"),
+            model=model_name or "gpt-3.5-turbo",
             temperature=temperature,
             base_url=self.api_base,
             api_key=os.getenv(self.api_key_env_var),
+            extra_body=extra_body,
             **kwargs
         )
 
