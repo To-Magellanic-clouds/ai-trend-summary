@@ -1,145 +1,222 @@
-# AI趋势总结项目
+# PKM Copilot - 个人知识管理系统
 
-一个通用的信息总结工作流系统，支持信息收集、预处理、分析、筛选、总结和输出的完整流程。
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-380/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tests](https://img.shields.io/badge/tests-passing-green.svg)](tests/)
 
-## 🚀 项目特性
+## 🎯 项目简介
 
-- **信息收集**: 支持多种数据源的信息采集
-- **智能预处理**: 自动化的数据清洗和标准化
-- **深度分析**: 基于LLM的内容分析和概念提取
-- **智能筛选**: 多维度评分和过滤机制
-- **自动总结**: 生成高质量的信息摘要
-- **向量化存储**: 支持语义搜索和RAG应用
-- **灵活输出**: 多种格式的结果输出
+PKM Copilot 是一套基于AI技术的个人知识管理工具集，解决信息碎片化、知识关联弱、复用效率低等核心痛点，覆盖从信息聚合到智能分析的全流程。
 
-## 📁 项目结构
+系统包含6个核心模块，既可独立使用，也可协同工作，构建完整的知识管理生态：
 
-```
-ai-trend-summary/
-├── src/                          # 源代码目录
-│   ├── infrastructure/           # 基础设施层
-│   │   ├── embedding/            # 向量化SDK
-│   │   └── database/             # 数据库操作
-│   ├── processing/               # 文章处理工具
-│   └── analysis/                 # 分析工具
-├── database/                     # 数据库设计和脚本
-├── documentation/                # 项目文档
-├── examples/                     # 使用示例
-├── config/                       # 配置文件
-└── test/                        # 测试文件
-```
-
-## 🛠️ 核心组件
-
-### 1. 向量化SDK (`src/infrastructure/embedding/`)
-
-功能完整的向量化SDK，支持将各种输入转储到向量数据库中。
-
-**主要特性:**
-- 支持多种向量数据库（目前支持Qdrant）
-- 多种向量化模型（sentence-transformers、transformers、OpenAI API）
-- 自动文档分块处理
-- 高效的语义搜索
-- 完整的文档CRUD操作
-
-**快速开始:**
-```python
-from src.infrastructure.embedding import create_embedding_manager, DocumentInput
-
-# 创建管理器
-manager = await create_embedding_manager(
-    vector_db_host="localhost",
-    vector_db_port=6333,
-    collection_name="my_documents"
-)
-
-# 添加文档
-document = DocumentInput(
-    content="人工智能是计算机科学的一个分支",
-    metadata={"category": "AI"}
-)
-await manager.add_document(document)
-
-# 搜索相似文档
-results = await manager.search_similar_documents("机器学习", top_k=5)
-```
-
-### 2. 文章处理工具 (`src/processing/`)
-
-基于LLM的文章处理系统，提供概念提取、内容分析等功能。
-
-**主要特性:**
-- 概念提取和实体识别
-- 文章质量评分
-- 重要性评分和分类
-- 批量处理管道
-- 多种输出格式
-
-**快速开始:**
-```python
-from src.processing import ConceptExtractor, ArticleProcessor
-
-# 创建处理器
-extractor = ConceptExtractor()
-processor = ArticleProcessor(extractor)
-
-# 处理文章
-result = processor.process_article("文章内容...")
-print(f"概念: {result.concepts.concepts}")
-print(f"质量评分: {result.quality_score}")
-```
-
-### 3. 数据库设计 (`database/`)
-
-完整的PostgreSQL数据库设计，支持整个信息处理工作流。
-
-**核心表:**
-- 数据源管理
-- 文章内容存储
-- 概念和实体管理
-- 处理结果记录
-- 用户偏好设置
+- **KnowBase (知库)** - 多源信息聚合中枢
+- **VecEmbed (向量工坊)** - 多模态信息向量化引擎  
+- **SiftFlow (筛流)** - AI智能过滤系统
+- **SumAgent (总结代理)** - 自动化内容提炼工具
+- **LinkVerse (关联宇宙)** - 可视化知识图谱模块
+- **CollectDeck (收藏甲板)** - 个人知识交互入口
 
 ## 🚀 快速开始
 
-### 1. 环境准备
+### 安装
 
 ```bash
 # 克隆项目
-git clone <repository-url>
-cd ai-trend-summary
+git clone https://github.com/your-username/pkm-copilot.git
+cd pkm-copilot
 
 # 安装依赖
-pip install -e .
+pip install -r requirements.txt
 
-# 复制配置文件
-cp .env.example .env
-# 根据需要修改 .env 配置
+# 或使用uv
+uv pip install -r requirements.txt
 ```
 
-### 2. 启动向量数据库
+### 初始化配置
 
 ```bash
-# 使用Docker启动Qdrant
-docker run -p 6333:6333 qdrant/qdrant
+# 创建开发环境配置
+python -m src.main init --template development
+
+# 或创建生产环境配置
+python -m src.main init --template production
 ```
 
-### 3. 快速设置和测试
+### 启动服务
 
 ```bash
-# 运行快速设置脚本
-python setup_embedding.py
+# 启动完整工作流
+python -m src.main start --workflow full
+
+# 启动特定模块
+python -m src.main start --workflow collect  # 仅收集
+python -m src.main start --workflow embed    # 仅向量化
 ```
 
-### 4. 运行示例
+### 查看状态
 
 ```bash
-# 向量化集成示例
-python examples/embedding_integration_example.py
+# 查看系统状态
+python -m src.main status
 
-# 文章处理示例
-python src/processing/main.py quick --input "path/to/articles" --output "results.json"
+# 列出可用模块
+python -m src.main module list
+
+# 测试特定模块
+python -m src.main module test knowbase
 ```
+
+## 📊 系统架构
+
+### 模块协作流程
+
+```
+KnowBase → VecEmbed → SiftFlow → SumAgent → LinkVerse → CollectDeck
+   ↓        ↓        ↓        ↓        ↓        ↓
+原始数据   语义向量   过滤提纯   结构化内容  知识关联   用户交互
+```
+
+### 技术栈
+
+| 层级 | 技术 | 用途 |
+|------|------|------|
+| **后端** | Python + FastAPI | 核心服务 |
+| **向量存储** | Qdrant/Pinecone | 语义搜索 |
+| **图数据库** | Neo4j | 知识图谱 |
+| **关系型数据库** | PostgreSQL | 结构化数据 |
+| **文档数据库** | MongoDB | 非结构化数据 |
+| **缓存** | Redis | 热点数据 |
+| **消息队列** | Redis/RabbitMQ | 异步任务 |
+
+### 数据流架构
+
+```
+信息收集 → 预处理 → 向量化 → 过滤 → 分析 → 存储 → 应用
+    ↓        ↓       ↓       ↓      ↓      ↓      ↓
+  RSS/邮件  清洗    嵌入     评分   概念   数据库  搜索/推荐
+```
+
+## 🧩 核心模块
+
+### 1. KnowBase (知库) - 信息聚合
+
+**功能**：统一收集RSS、邮件、爬虫、API等多种数据源
+
+```python
+from src.modules.knowbase.core import KnowBaseCore
+
+knowbase = KnowBaseCore()
+
+# 添加RSS源
+source = DataSource(
+    name="技术博客",
+    type=DataSourceType.RSS,
+    config={"url": "https://example.com/rss"}
+)
+
+# 同步数据源
+await knowbase.sync_all_sources([source])
+```
+
+**支持的数据源**：
+- RSS/Atom订阅
+- 邮件订阅 (IMAP)
+- 网络爬虫
+- API接口
+- 手动导入
+- 文件上传
+
+### 2. VecEmbed (向量工坊) - 语义处理
+
+**功能**：将文本内容转换为语义向量，支持多种模型
+
+```python
+from src.modules.vecembed.core import VecEmbedCore
+
+vecembed = VecEmbedCore()
+
+# 文本向量化
+embedding = await vecembed.vectorize_text("AI技术发展")
+
+# 语义搜索
+results = await vecembed.search_similar("机器学习应用", limit=10)
+```
+
+**支持的模型**：
+- Sentence Transformers
+- OpenAI Embeddings
+- Hugging Face Transformers
+- 本地模型
+
+### 3. SiftFlow (筛流) - 智能过滤 *(开发中)*
+
+**功能**：基于AI的内容质量评估和个性化过滤
+
+### 4. SumAgent (总结代理) - 内容提炼 *(开发中)*
+
+**功能**：自动生成摘要、提取关键词、识别概念
+
+### 5. LinkVerse (关联宇宙) - 知识图谱 *(开发中)*
+
+**功能**：构建实体关系图，支持可视化查询
+
+### 6. CollectDeck (收藏甲板) - 用户交互 *(开发中)*
+
+**功能**：收藏管理、语义搜索、批注笔记
+
+## 🏗️ 项目结构
+
+```
+pkm-copilot/
+├── src/
+│   ├── core/              # 核心接口和数据模型
+│   ├── modules/           # 模块化组件
+│   │   ├── knowbase/     # 信息聚合
+│   │   ├── vecembed/     # 向量化
+│   │   ├── siftflow/     # 过滤
+│   │   ├── sumagent/     # 总结
+│   │   ├── linkverse/    # 知识图谱
+│   │   └── collectdeck/  # 收藏管理
+│   └── main.py           # 主入口
+├── tests/                 # 测试套件
+├── config/               # 配置文件
+├── docs/                 # 文档
+├── migrations/           # 数据迁移脚本
+└── scripts/              # 工具脚本
+```
+
+## 🧪 测试
+
+### 运行测试
+
+```bash
+# 运行所有测试
+pytest
+
+# 运行特定模块测试
+pytest tests/test_modules/test_knowbase.py -v
+
+# 运行集成测试
+pytest tests/integration/ -v
+
+# 运行性能测试
+pytest tests/performance/ -v
+```
+
+### 测试覆盖率
+
+```bash
+# 生成覆盖率报告
+pytest --cov=src --cov-report=html
+
+# 查看报告
+open htmlcov/index.html
+```
+
+## 📖 迁移指南
+
+从旧架构迁移到新架构，请参考 [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md)。
 
 ## 📖 详细文档
 
@@ -148,112 +225,25 @@ python src/processing/main.py quick --input "path/to/articles" --output "results
 - [数据库设计文档](database/README.md)
 - [项目介绍](documentation/项目介绍.md)
 
-## 🔧 配置说明
-
-### 环境变量配置
-
-```bash
-# Qdrant向量数据库
-QDRANT_HOST=localhost
-QDRANT_PORT=6333
-QDRANT_API_KEY=
-
-# 向量化模型
-EMBEDDING_MODEL_NAME=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
-EMBEDDING_MODEL_TYPE=sentence_transformers
-
-# OpenAI配置（可选）
-OPENAI_API_KEY=your_api_key_here
-OPENAI_EMBEDDING_MODEL=text-embedding-ada-002
-
-# 文本处理
-CHUNK_SIZE=1000
-CHUNK_OVERLAP=200
-```
-
-### 预定义配置
-
-项目提供多种预定义配置模板：
-
-```bash
-# 查看可用配置
-python src/processing/main.py list-configs
-
-# 使用标准配置
-python src/processing/main.py config standard
-
-# 使用开发配置
-python src/processing/main.py config dev
-```
-
-## 🧪 测试
-
-```bash
-# 运行向量化SDK测试
-python -m pytest src/infrastructure/embedding/test_embedding.py
-
-# 运行文章处理测试
-python -m pytest src/processing/tests/
-
-# 运行集成测试
-python test/integration_test.py
-```
-
-## 📊 使用场景
-
-### 1. 信息收集和总结
-- 新闻文章自动收集和总结
-- 技术文档的智能分析
-- 研究论文的概念提取
-
-### 2. 语义搜索和RAG
-- 构建知识库搜索系统
-- 实现智能问答系统
-- 支持多语言语义检索
-
-### 3. 内容分析和分类
-- 文章质量自动评估
-- 内容重要性排序
-- 主题分类和标签生成
-
-## 🔄 工作流程
-
-1. **数据收集**: 从各种数据源收集信息
-2. **预处理**: 清洗和标准化数据
-3. **向量化**: 将文本转换为向量表示
-4. **存储**: 保存到向量数据库和关系数据库
-5. **分析**: 使用LLM进行深度分析
-6. **筛选**: 基于多维度评分进行过滤
-7. **总结**: 生成高质量摘要
-8. **输出**: 多种格式的结果输出
-
 ## 🤝 贡献指南
 
 1. Fork 项目
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+2. 创建功能分支 (`git checkout -b feature/AmazingFeature`)
 3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
+5. 创建 Pull Request
 
-## 📝 许可证
+## 📄 许可证
 
 本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
 
-## 🆘 支持
+## 🙏 致谢
 
-如果您遇到问题或有疑问：
-
-1. 查看相关文档
-2. 检查 [Issues](../../issues) 中是否有类似问题
-3. 创建新的 Issue 描述您的问题
-
-## 🔗 相关链接
-
-- [Qdrant文档](https://qdrant.tech/documentation/)
-- [LangChain文档](https://python.langchain.com/)
-- [Sentence Transformers](https://www.sbert.net/)
-- [OpenAI API](https://platform.openai.com/docs/)
+- [Sentence Transformers](https://www.sbert.net/) - 文本向量化
+- [FastAPI](https://fastapi.tiangolo.com/) - Web框架
+- [Qdrant](https://qdrant.tech/) - 向量数据库
+- [Neo4j](https://neo4j.com/) - 图数据库
 
 ---
 
-**注意**: 这是一个活跃开发中的项目，API可能会发生变化。建议在生产环境使用前进行充分测试。
+**PKM Copilot** - 让知识管理更智能 🚀
