@@ -1,0 +1,105 @@
+[
+    {
+        "article_id": "2_Your_Go-To_Vocabulary_to_Navigate_the_World_of_AI_Agents_and_Agentic_Workflows",
+        "title": "2_Your_Go-To_Vocabulary_to_Navigate_the_World_of_AI_Agents_and_Agentic_Workflows",
+        "file_path": "D:\\code\\ai-trend-summary\\result\\Huggingface\\Blog\\Trending\\test\\2_Your_Go-To_Vocabulary_to_Navigate_the_World_of_AI_Agents_and_Agentic_Workflows.md",
+        "status": "completed",
+        "concepts": {
+            "concepts": [
+                "AI agent",
+                "autonomous agents",
+                "intelligent agents",
+                "rational agents",
+                "task-oriented agents",
+                "smart agents",
+                "simple agents",
+                "bots",
+                "agentic interactions",
+                "human-AI interaction",
+                "AI assistants",
+                "copilots",
+                "AI personas",
+                "embodied agents",
+                "digital agents",
+                "multi-framework agents",
+                "self-replicating agents",
+                "polymorphic agents",
+                "agentic workflows",
+                "profiling",
+                "memory",
+                "knowledge",
+                "reasoning/planning",
+                "actions",
+                "environment",
+                "policy",
+                "reward",
+                "autonomy",
+                "perception",
+                "decision-making"
+            ],
+            "entities": [
+                "John Thompson",
+                "EY",
+                "GitHub Copilot",
+                "Siri",
+                "Alexa",
+                "Google Assistant"
+            ],
+            "keywords": [
+                "AI agents",
+                "autonomy",
+                "intelligent systems",
+                "agentic workflows",
+                "bots",
+                "assistants",
+                "copilots",
+                "personas",
+                "embodied agents",
+                "digital agents",
+                "multi-framework agents",
+                "self-replicating agents",
+                "polymorphic agents"
+            ],
+            "confidence": 0.95,
+            "metadata": {
+                "source_url": "https://huggingface.co/blog/Kseniase/agentsvocab",
+                "language": "en",
+                "document_type": "blog_post",
+                "topic": "AI Agents and Agentic Workflows",
+                "text_length": 14819,
+                "extraction_method": "llm",
+                "model_type": "ChatOpenAI",
+                "file_path": "D:\\code\\ai-trend-summary\\result\\Huggingface\\Blog\\Trending\\test\\2_Your_Go-To_Vocabulary_to_Navigate_the_World_of_AI_Agents_and_Agentic_Workflows.md",
+                "file_size": 14996,
+                "file_name": "2_Your_Go-To_Vocabulary_to_Navigate_the_World_of_AI_Agents_and_Agentic_Workflows.md"
+            }
+        },
+        "summary": null,
+        "tags": [
+            "AI agents",
+            "autonomy",
+            "intelligent systems",
+            "agentic workflows",
+            "bots"
+        ],
+        "categories": [
+            "AI/ML"
+        ],
+        "quality_score": 1.0,
+        "importance_score": 1.0,
+        "trending_score": null,
+        "processing_time": 63.28822,
+        "processed_at": "2025-07-28T00:33:05.425448",
+        "metadata": {
+            "id": "2_Your_Go-To_Vocabulary_to_Navigate_the_World_of_AI_Agents_and_Agentic_Workflows",
+            "title": "2_Your_Go-To_Vocabulary_to_Navigate_the_World_of_AI_Agents_and_Agentic_Workflows",
+            "file_path": "D:\\code\\ai-trend-summary\\result\\Huggingface\\Blog\\Trending\\test\\2_Your_Go-To_Vocabulary_to_Navigate_the_World_of_AI_Agents_and_Agentic_Workflows.md",
+            "metadata": {
+                "file_size": 14996,
+                "modified_time": 1752685460.6974313
+            },
+            "database_article_id": 5
+        },
+        "errors": []
+    }
+]

@@ -1,0 +1,22 @@
+{
+  "llm_provider": "openai_compatible",
+  "llm_model": "qwen-turbo-latest",
+  "processor_type": "standard",
+  "input_type": "directory",
+  "input_path": "result/manual_entry",
+  "file_pattern": "*.md",
+  "output_path": "results_db_manual_entry_20250115_120000.json",
+  "output_format": "json",
+  "enable_database": true,
+  "data_source_name": "manual_entry",
+  "acquisition_method": "manual_entry",
+  "enable_concept_extraction": true,
+  "enable_quality_scoring": true,
+  "enable_importance_scoring": true,
+  "enable_categorization": true,
+  "enable_tagging": true,
+  "enable_progress": true,
+  "save_summary_report": true,
+  "batch_size": 5,
+  "max_files": 20
+}

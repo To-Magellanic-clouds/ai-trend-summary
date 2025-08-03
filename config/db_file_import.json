@@ -1,0 +1,23 @@
+{
+  "llm_provider": "openai_compatible",
+  "llm_model": "qwen3-32b",
+  "openai_api_key": "sk-e4c10f5953c74e9892691460dc8beaec",
+  "openai_api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "processor_type": "standard",
+  "input_type": "directory",
+  "input_path": "result/Huggingface/Blog",
+  "file_pattern": "*.md",
+  "output_path": "results_db_import_20250115_120000.json",
+  "output_format": "json",
+  "enable_database": true,
+  "data_source_name": "file_import",
+  "acquisition_method": "user_import",
+  "enable_concept_extraction": true,
+  "enable_quality_scoring": true,
+  "enable_importance_scoring": true,
+  "enable_categorization": true,
+  "enable_tagging": true,
+  "enable_progress": true,
+  "save_summary_report": true,
+  "max_files": 50
+}

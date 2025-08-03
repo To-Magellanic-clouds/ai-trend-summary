@@ -1,0 +1,22 @@
+{
+  "llm_provider": "openai_compatible",
+  "llm_model": "qwen-turbo-latest",
+  "processor_type": "standard",
+  "input_type": "directory",
+  "input_path": "result/batch_crawl",
+  "file_pattern": "*.md",
+  "output_path": "results_db_batch_crawl_20250115_120000.json",
+  "output_format": "json",
+  "enable_database": true,
+  "data_source_name": "batch_crawl",
+  "acquisition_method": "batch_crawl",
+  "enable_concept_extraction": true,
+  "enable_quality_scoring": true,
+  "enable_importance_scoring": true,
+  "enable_categorization": true,
+  "enable_tagging": true,
+  "enable_progress": true,
+  "save_summary_report": true,
+  "batch_size": 20,
+  "max_files": 100
+}
